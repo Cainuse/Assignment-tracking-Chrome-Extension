@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Penabela Assignment Tracker 1.0</title>
+    
+    <style type="text/css">
+        #top-bar{
+            width:auto;
+            margin:0 auto;
+            background-color: white;
+            height: 80px;
+            
+            
+        }
+      
+        body{
+            margin:0;
+            padding:0;
+            background-color: lightblue;
+            
+        }
+        
+        #logo{
+            height:80px;
+            float:left;
+        }
+        
+        .top-bar{
+            position:relative;
+            float:left;
+            border-left: 2px #f7f7f7 solid;
+            padding-left: 10px;
+            height:80px;
+            padding-right:10px;
+            color:black;
+            font-family: fantasy, arial, sans-serif;
+        }
+        .top-bar:hover{
+            float:left;
+            border-left: 2px #f7f7f7 solid;
+            padding-left: 10px;
+            height:80px;
+            padding-right:10px;
+            position:relative;
+            color:white;
+            background-color: black;
+            font-family: fantasy, arial, sans-serif;
+        }
+        
+        .top-bar-right{
+            float:right;
+            border-left: 2px #f7f7f7 solid;
+            padding-left: 10px;
+            height:80px;
+            padding-right:10px;
+            color:black;
+            font-family: fantasy, arial, sans-serif;
+        }
+        .top-bar-right:hover{
+            float:right;
+            border-left: 2px #f7f7f7 solid;
+            padding-left: 10px;
+            height:80px;
+            padding-right:10px;
+            position:relative;
+            color:white;
+            background-color: black;
+            font-family: fantasy, arial, sans-serif;
+        }
+        
+        #top-bar-txt{
+            position: relative;
+            top:10%;
+            text-decoration: none;
+            
+        }
+        
+        
+        #top-bar-search{
+            
+            position: relative;
+            top:5%;
+        }
+        
+        #search-img{
+            position:relative;
+            top:10px;
+            left:3px;
+            height: 17px;
+            float:right;
+        }
+        #search-img1{
+            position:relative;
+            top:5px;
+           
+            height: 17px;
+           
+        }
+        .top-bar-right-search{
+            float:right;
+            border-left: 2px #f7f7f7 solid;
+            padding-left: 10px;
+            height:80px;
+            padding-right:10px;
+            color:black;
+            
+        }
+        
+        .background-wrap{
+            position:fixed;
+            z-index:-1000;
+            width:100%;
+            height:100%;
+            overflow:hidden;
+            top=0;
+            left:0;
+            opacity: 0;
+        }
+        
+        .hover-image{
+            position: relative;
+            width: 15%;
+            left: 1580px;
+            top: 300px;
+            
+        }
+        
+        .image{
+            display: block;
+            width: 100%;
+            height: auto;
+            
+        }
+        
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #008CBA;
+            overflow: hidden;
+            width: 100%;
+            height: 0;
+            transition: .5s ease;
+            border-radius: 50%;
+            
+ 
+        }
+        
+        
+        .hover-image:hover .overlay{
+            height: 100%;
+            border-style: solid;
+            border-color:darkblue;
+        }
+        
+        #addAss{
+            white-space: nowrap; 
+            color: lightcyan;
+            
+            position: absolute;
+            overflow: hidden;
+            top: 50%;
+            left: 52%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+        
+        #input_asstitle{
+            width: 90%;
+            height: 30%;
+            margin-bottom: 2px;
+            
+        }
+        #date-input{
+            width: 90%;
+            height: 30%;
+            font-size: 100%;
+        }
+        
+        #submit-button{
+           margin-top: 10px;
+           margin-left: 60px;
+           width: 30%;
+           height: 30%; 
+        }
+      
+        #ass-text{
+            margin-top: 13px;
+            margin-left: 7px;
+            font-size: 120%;
+        }
+        #due-date-text{
+            margin-left: 7px;
+            font-size: 120%;
+        }
+
+        
+        .greeting{
+            font-family: 'Dancing Script', cursive;
+            position: relative;
+            top: 200px;
+            font-size: 200%;
+            color:black;
+            
+        }
+        #greeting-txt{
+            
+        }
+        #search-bar{
+            background-color: lightgrey;
+            font-size:15px;
+            padding-right: 25%;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            padding-left:3px;
+            opacity: 0.5;
+        }
+        #search-bar:hover{
+            background-color: lightgrey;
+            font-size:15px;
+            padding-right: 25%;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            padding-left:3px;
+            opacity: 1;
+        }
+    </style>
+    
+    <script>
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('txt').innerHTML =
+    h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+</script>
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+    </head>
+
+    
+    <body onload="startTime()">
+<!-- Background Video-->
+        <div class="background-wrap">
+        
+        
+                <video id="video-bg-elem" preload="auto" autoplay="true" loop="loop" muted="muted">
+                
+                    <source src="bg-vid.mp4" type="video/mp4">
+                    Video not supported
+                </video>
+        
+        
+            </div>
+<!-- TOP BAR -->
+        <div id="top-bar">
+            <img id="logo" src="icon.png" >
+            <a href = "mypopup.html">
+                <div class="top-bar">
+                    <h2 id="top-bar-txt">Science</h2>
+                </div>
+            </a>
+            
+            <a href = "mypopup.html">
+                <div class="top-bar">
+
+                    <h2 id="top-bar-txt">Engineering</h2>
+
+                </div>
+            </a>
+            
+            <a href = "mypopup.html">
+                <div class="top-bar">
+
+                    <h2 id="top-bar-txt">Arts</h2>
+
+                </div>
+            </a>
+            <a href = "mypopup.html">
+                <div class="top-bar">
+
+                    <h2 id="top-bar-txt">Business</h2>
+
+                </div>
+            </a>
+            
+            <a href = "mypopup.html">
+                <div class="top-bar">
+
+                    <h2 id="top-bar-txt">Forestry</h2>
+
+                </div>
+            </a>
+            <a href = "mypopup.html">
+                <div class="top-bar">
+
+                    <h2 id="top-bar-txt">Land and Food Sciences</h2>
+
+                </div>
+            </a>
+            <a href = "mypopup.html">
+                <div class="top-bar">
+
+                    <h2 id="top-bar-txt">Kinesiology</h2>
+
+                </div>
+            </a>
+            <div class="top-bar">
+            
+                <h2 id="top-bar-txt">More</h2>
+            
+                
+            </div>
+            <a href = "mypopup.html">
+                <div class="top-bar-right">
+
+                    <h2 id = "top-bar-txt">About us</h2>
+
+                </div>
+            </a>
+            
+            <div class="top-bar-right-search">
+            
+                <h2 id="top-bar-search">
+                <form>
+                    <input type="text" id="search-box" placeholder="search">
+                    <input type="image" id="search-img" src="search.png" >
+                </form>
+                
+                </h2>
+            
+            </div>
+        </div>
+<!-- Content -->
+       
+        <center class="greeting">
+            <h3><div id="txt"></div></h3>
+            
+            <h1 id="greeting-text">Good Morning, Peng</h1>
+            <form>
+                    <input type="text" id="search-bar" placeholder="search">
+                    <input type="image" id="search-img1" src="search.png" >
+            </form>
+        </center>
+
+        <div class="hover-image">
+            <!-- This is the source image that gets hovered over for user input-->    
+            <img src="add_button.png" class="image">
+            
+            <!-- this div is all the material that shows up once the img is hovered over-->
+            <div class="overlay">
+                
+                <form>
+                <div id="addAss">
+                    <p id="ass-text">Assignment Title:<br><input type = "text" id = "input_asstitle"></p>    
+                    <p id="due-date-text">Due Date:<br><input type="date" id="date-input"></p>
+                    <input type = "submit" value = "Add" id="submit-button">  
+                </div>    
+                
+                </form>
+            
+                
+            </div>
+                
+        </div>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
